@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.devicepush.cordova-phonegap"
+        version="0.1.0">
+
+  <name>DevicePush</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <asset src="www/devicepush.min.js" target="js/devicepush.min.js"/>
+  <js-module src="www/devicepush.min.js" name="devicePush">
+    <clobbers target="devicePush" />
+  </js-module>
+  
+    <!-- dependency id="org.apache.cordova.device@1" /-->
+    <dependency id="org.apache.cordova.device" version=">=0.2.12" />
+	
+    <!-- dependency id="com.phonegap.plugins.pushplugin@1" /-->
+	<dependency id="com.phonegap.plugins.PushPlugin" url="https://github.com/phonegap-build/PushPlugin.git" version=">=2.4.0" />
+  
+</plugin>
