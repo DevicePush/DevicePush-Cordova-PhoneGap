@@ -45,14 +45,26 @@ This plugin is for use with [Cordova](http://incubator.apache.org/cordova/), and
 
 Below are the methods for installing this plugin automatically using command line tools. For additional info, take a look at the [Plugman Documentation](https://github.com/apache/cordova-plugman/blob/master/README.md) and [Cordova Plugin Specification](https://github.com/alunny/cordova-plugin-spec).
 
-### Cordova and PhoneGap
+### Cordova and PhoneGap CLI
 
 The plugin can be installed via the Cordova command line interface:
 
-1) Navigate to the root folder for your phonegap project. 2) Run the command.
+1) Navigate to the root folder for your phonegap project. 
+2) Run the command:
 
 ```sh
 cordova plugin add https://github.com/DevicePush/DevicePush-Cordova-PhoneGap
+```
+
+### PhoneGap Build
+
+The plugin can be installed via PhoneGap Build:
+
+1) Open config.xml file of your project. 
+2) Add this line:
+
+```sh
+<gap:plugin name="com.devicepush.cordova-phonegap" source="plugins.cordova.io" />
 ```
 
 ##<a name="plugin_api"></a> Plugin API
