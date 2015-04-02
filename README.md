@@ -50,6 +50,7 @@ Below are the methods for installing this plugin automatically using command lin
 The plugin can be installed via the Cordova command line interface:
 
 1) Navigate to the root folder for your phonegap project. 
+
 2) Run the command:
 
 ```sh
@@ -61,6 +62,7 @@ cordova plugin add https://github.com/DevicePush/DevicePush-Cordova-PhoneGap
 The plugin can be installed via PhoneGap Build:
 
 1) Open config.xml file of your project. 
+
 2) Add this line:
 
 ```sh
