@@ -105,16 +105,19 @@ devicePush.notificationReceived(function(textNotification) {
 });
 ```
 
-After that, you will be able to get the device id.
+After that, you will be able to get the device id or token of the device.
 ```js
-var id = devicePush.getDeviceId();
+document.addEventListener("deviceRegistered",successDeviceRegistered,false);
+
+function successDeviceRegistered(evt){
+    console.log("Device Id" + evt.devicePushId);
+    var id = evt.devicePushId;
+    console.log("Device Token" + evt.devicePushToken);
+    var tokenDevice = evt.devicePushToken;
+}
 ```
 With this ID you can send notification from your server.
-
-Optionally, you can get the original token of the device.
-```js
-var tokenDevice = devicePush.getToken();
-```
+You can see more information about this at: http://www.devicepush.com/documentation-push-notification/
 
 #### successHandler
 Called when a plugin method returns without error
