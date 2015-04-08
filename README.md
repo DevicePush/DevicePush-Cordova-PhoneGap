@@ -117,6 +117,7 @@ function successDeviceRegistered(evt){
 }
 ```
 With this ID you can send notification from your server.
+
 You can see more information about this at: http://www.devicepush.com/documentation-push-notification/
 
 #### successHandler
