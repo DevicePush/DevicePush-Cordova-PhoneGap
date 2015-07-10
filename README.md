@@ -87,7 +87,12 @@ When the device is ready, you must call the register function.
 You can manage notifications received with the next method
 ```js
     devicePush.notificationReceived(function(data) {
-        console.log(data) // data is your text sent
+        // data.message, 
+        // data.title, 
+        // data.count, 
+        // data.sound, 
+        // data.additionalData
+        console.log(data.message) // data is your text sent
     });
 ```
 
