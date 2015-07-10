@@ -51,7 +51,7 @@ The plugin can be installed via PhoneGap Build:
 2) Add this line:
 
 ```xml
-<gap:plugin name="com.devicepush.cordova-phonegap" source="plugins.cordova.io" />
+<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" />
 ```
 
 ##<a name="plugin_api"></a> Plugin API
