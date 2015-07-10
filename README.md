@@ -1,4 +1,4 @@
-# Device Push Plugin for Android and iOS
+# Device Push Notification Plugin
 
 ## DESCRIPTION
 
