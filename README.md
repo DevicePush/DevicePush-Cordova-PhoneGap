@@ -39,14 +39,10 @@ The plugin can be installed via the Cordova command line interface:
 2) Run the command:
 
 ```sh
-cordova plugin add com.devicepush.cordova-phonegap
-```
-or
-```sh
-phonegap plugin add com.devicepush.cordova-phonegap
+cordova plugin add https://github.com/DevicePush/DevicePush-Cordova-PhoneGap
 ```
 
-### PhoneGap Build Support
+### PhoneGap Build
 
 The plugin can be installed via PhoneGap Build:
 
@@ -55,13 +51,7 @@ The plugin can be installed via PhoneGap Build:
 2) Add this line:
 
 ```xml
-<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" />
-```
-
-If you want to specify a particular version of the plugin you can add the version attribute to the gap tag.
-
-```xml
-<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.3.1" />
+<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.3.0" />
 ```
 
 ##<a name="plugin_api"></a> Plugin API
@@ -88,14 +78,12 @@ When the device is ready, you must call the register function.
                 idUser: 'USER_ID', // Your User ID in Device Push
                 idApplication: 'APPLICATION_ID', // Aplication ID in Device Push
                 position: true // Activate or deactivate gps position record. Default value is false
-                additionalData: {} // Currently in development
             });
         },
         receivedEvent: function(id) {}
     };
 ```
 
-#### To manager a notification received
 You can manage notifications received with the next method
 ```js
     devicePush.notificationReceived(function(data) {
@@ -108,7 +96,6 @@ You can manage notifications received with the next method
     });
 ```
 
-#### To get id or token device
 You can get the device id or token of the device.
 ```js
     document.addEventListener("deviceRegistered",successDeviceRegistered,false);
@@ -120,38 +107,31 @@ You can get the device id or token of the device.
         var tokenDevice = evt.devicePushToken;
     }
 ```
-With this ID you can send notification from your server.
 
-#### To activate or not gps position record
 You can activate or deactivate gps position record.
 ```js
     devicePush.setPosition(true); //Active gps position record, true o false. Default value is false.
 ```
 
-#### To put additional user data for segmentation
-To activate the segmentation of notifications, you will have to send additional user data, such as personal data.
+With this ID you can send notification from your server.
+
+You can see more information about this at: http://www.devicepush.com/documentation-push-notification/
+
+#### successHandler
+Called when a plugin method returns without error
+
 ```js
-    // Currently in development
-    devicePush.putAdditionalData({
-        additionalData: {
-            name: '',
-            surnames: '',
-            age: '',
-            gender: ''
-        } 
-    });
+    // result contains any message sent from the plugin call
+    // Coming soon
 ```
 
 #### errorHandler
 Called when the plugin returns an error
-```js
-    devicePush.error(function(e) {
-        // e.message
-        console.log(e.message) // data is your error
-    });
-```
 
-You can see more information about this at: http://www.devicepush.com/documentation-push-notification/
+```js
+    // result contains any error description text returned from the plugin call
+    // Coming soon
+```
 
 Looking at the above message handling code for Android, a few things bear explanation. Your app may receive a notification while it is active (INLINE). If you background the app by hitting the Home button on your device, you may later receive a status bar notification. Selecting that notification from the status will bring your app to the front and allow you to process the notification (BACKGROUND). Finally, should you completely exit the app by hitting the back button from the home page, you may still receive a notification. Touching that notification in the notification tray will relaunch your app and allow you to process the notification (COLDSTART). In this case the **coldstart** flag will be set on the incoming event. You can look at the **foreground** flag on the event to determine whether you are processing a background or an in-line notification. You may choose, for example to play a sound or show a dialog only for inline or coldstart notifications since the user has already been alerted via the status bar.
 

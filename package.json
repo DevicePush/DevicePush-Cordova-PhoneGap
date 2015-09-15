@@ -1,5 +1,5 @@
 {
-  "version": "0.3.1",
+  "version": "0.3.0",
   "name": "com.devicepush.cordova-phonegap",
   "cordova_name": "DevicePush",
   "platforms": [],
@@ -20,12 +20,8 @@
   },
   "keywords": [
     "phonegap",
-    "cordova",
     "push",
-    "notification",
-    "iOS",
-    "Android",
-    "Windows"
+    "notification"
   ],
   "author": "Device Push",
   "license": "Apache",
