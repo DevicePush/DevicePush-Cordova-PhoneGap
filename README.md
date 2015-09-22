@@ -61,7 +61,7 @@ The plugin can be installed via PhoneGap Build:
 If you want to specify a particular version of the plugin you can add the version attribute to the gap tag.
 
 ```xml
-<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.3.3" />
+<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.3.4" />
 ```
 
 ##<a name="plugin_api"></a> Plugin API
