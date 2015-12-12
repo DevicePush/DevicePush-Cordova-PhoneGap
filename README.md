@@ -69,7 +69,8 @@ If you want to specify a particular version of the plugin you can add the versio
 #### Whitelist
 Add *.devicepush.com domain in the config.xml file:
 ```xml
-<access origin="*.devicepush.com"></access>
+<access origin="*.devicepush.com" />
+<allow-navigation href="*.devicepush.com" />
 ```
 
 #### To register a new device
