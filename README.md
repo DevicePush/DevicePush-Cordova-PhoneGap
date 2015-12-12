@@ -61,7 +61,7 @@ The plugin can be installed via PhoneGap Build:
 If you want to specify a particular version of the plugin you can add the version attribute to the gap tag.
 
 ```xml
-<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.3.5" />
+<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.3.6" />
 ```
 
 ##<a name="plugin_api"></a> Plugin API
@@ -95,23 +95,10 @@ When the device is ready, you must call the register function.
     };
 ```
 
-#### To manager a notification received
-You can manage notifications received with the next method
-```js
-    devicePush.notificationReceived(function(data) {
-        // data.message, 
-        // data.title, 
-        // data.count, 
-        // data.sound, 
-        // data.additionalData
-        console.log(data.message) // data is your text sent
-    });
-```
-
 #### To get id or token device
 You can get the device id or token of the device.
 ```js
-    document.addEventListener("deviceRegistered",successDeviceRegistered,false);
+    document.addEventListener("deviceRegistered", successDeviceRegistered, false);
 
     function successDeviceRegistered(evt){
         console.log("Device Id" + evt.devicePushId);
@@ -121,6 +108,26 @@ You can get the device id or token of the device.
     }
 ```
 With this ID you can send notification from your server.
+
+#### To manager a notification received
+You can manage notifications received with the next method
+```js
+    document.addEventListener('notificationReceived', successNotificationReceived, false);
+
+    function successNotificationReceived(evt){
+        // evt.data.message, 
+        // evt.data.title, 
+        // evt.data.count, 
+        // evt.data.sound, 
+        // evt.data.additionalData
+        console.log(evt.data.message) // data is your text sent
+    }
+```
+
+To show a dynamic and floating notification, you have to add the following function into the function successNotificationReceived.
+```js
+    devicePush.showNotification(evt.data.message);
+```
 
 #### To activate or not gps position record
 You can activate or deactivate gps position record.
@@ -139,15 +146,6 @@ To activate the segmentation of notifications, you will have to send additional 
             age: '',
             gender: ''
         } 
-    });
-```
-
-#### errorHandler
-Called when the plugin returns an error
-```js
-    devicePush.error(function(e) {
-        // e.message
-        console.log(e.message) // data is your error
     });
 ```
 
