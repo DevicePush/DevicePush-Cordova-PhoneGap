@@ -2,11 +2,14 @@
 
 ## DESCRIPTION
 
-This plugin is for use with [Cordova](http://incubator.apache.org/cordova/), and allows your application to receive push notifications on Android and iOS devices.
-* The Android implementation uses [Google's GCM (Google Cloud Messaging) service](http://developer.android.com/guide/google/gcm/index.html).
-* The iOS version is based on [Apple APNS Notifications](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html).
+Get the most out of your App, communicate in a segmented and geolocated manner.
+Send push notifications through your iOS and Android app to your users.
 
-**Important** - Push notifications are intended for real devices. The registration process will fail on the iOS simulator. Notifications can be made to work on the Android Emulator, however doing so requires installation of some helper libraries, as outlined [here,](http://www.androidhive.info/2012/10/android-push-notifications-using-google-cloud-messaging-gcm-php-and-mysql/) under the section titled "Installing helper libraries and setting up the Emulator".
+It was never so easy to implement push notifications in mobile apps.
+Integrate Device Push in a native app, or in a hybrid app very easily with our plugins for Cordova and PhoneGap, Ionic or Appcelerator.
+Build bonds with your users from your app giving them valuable and relevant content just when they need it.
+Send notifications to a certain group of segmented users, or interact with them when they pass through a delimited geozone.
+Take advantage of all the potential that Device Push offers you and make your company even more visible!
 
 ### Contents
 
@@ -25,10 +28,6 @@ This requires phonegap/cordova 5.0+
 
 - Android
 - iOS
-
-### Platforms Under Development
-
-- WP8
 
 ### Cordova and PhoneGap CLI
 
@@ -55,13 +54,17 @@ The plugin can be installed via PhoneGap Build:
 2) Add this line:
 
 ```xml
-<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" />
+<plugin name="com.devicepush.cordova-phonegap" source="npm">
+    <param name="SENDER_ID" value="XXXXXXX" />
+</plugin>
 ```
 
 If you want to specify a particular version of the plugin you can add the version attribute to the gap tag.
 
 ```xml
-<gap:plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.3.8" />
+<plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.3.9" />
+    <param name="SENDER_ID" value="XXXXXXX" />
+</plugin>
 ```
 
 ##<a name="plugin_api"></a> Plugin API
@@ -164,8 +167,8 @@ The notification system consists of several interdependent components.
 
 	The MIT License
 
-	Copyright (c) 2015 Device Push.
-	portions Copyright (c) 2015 Device Push
+	Copyright (c) 2017 Device Push.
+	portions Copyright (c) 2017 Device Push
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal

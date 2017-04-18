@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         id="com.devicepush.cordova-phonegap"
-        version="0.3.8">
+        version="0.3.9">
 
 	<name>DevicePush</name>
 	
@@ -15,7 +15,7 @@
 	</js-module>
   
     <dependency id="cordova-plugin-device" />
-    <dependency id="phonegap-plugin-push@1.2.3" />
+    <dependency id="phonegap-plugin-push@1.10.2" />
     <dependency id="cordova-plugin-geolocation" />
     <dependency id="cordova-plugin-whitelist" />
   
