@@ -1,33 +1,27 @@
 # Device Push Notification Plugin
 
-## DESCRIPTION
+## Description
 
-Get the most out of your App, communicate in a segmented and geolocated manner.
-Send push notifications through your iOS and Android app to your users.
+This plugin is for use with [Cordova](http://incubator.apache.org/cordova/), and allows your application to receive push notifications on Android and iOS devices.
+* The Android implementation uses [FCM Firebase Cloud Messaging](http://firebase.google.com/).
+* The iOS version is based on [APNS Notifications](https://developer.apple.com/notifications/).
 
-It was never so easy to implement push notifications in mobile apps.
-Integrate Device Push in a native app, or in a hybrid app very easily with our plugins for Cordova and PhoneGap, Ionic or Appcelerator.
-Build bonds with your users from your app giving them valuable and relevant content just when they need it.
-Send notifications to a certain group of segmented users, or interact with them when they pass through a delimited geozone.
-Take advantage of all the potential that Device Push offers you and make your company even more visible!
+## Contents
 
-### Contents
-
-- [Automatic Installation](#automatic_installation)
+- [How to install the Plugin](#install_plugin)
 - [Plugin API](#plugin_api)
-- [Testing](#testing)
-- [LICENSE](#license)
+- [License](#license)
 
-##<a name="automatic_installation"></a>Automatic Installation
+### Requires Versions
 
-Below are the methods for installing this plugin automatically using command line tools. For additional info, take a look at the [Plugman Documentation](https://github.com/apache/cordova-plugman/blob/master/README.md) and [Cordova Plugin Specification](https://github.com/alunny/cordova-plugin-spec).
-
-This requires phonegap/cordova 5.0+
+- phonegap/cordova 6.0+
 
 ### Supported Platforms
 
 - Android
 - iOS
+
+## <a name="install_plugin"></a>How to install the Plugin
 
 ### Cordova and PhoneGap CLI
 
@@ -51,32 +45,32 @@ The plugin can be installed via PhoneGap Build:
 
 1) Open config.xml file of your project. 
 
-2) Add this line:
+2) Add this line and replace XXXXXXX with your FCM Sender ID:
 
 ```xml
 <plugin name="com.devicepush.cordova-phonegap" source="npm">
     <param name="SENDER_ID" value="XXXXXXX" />
-</plugin>
+</param>
 ```
 
 If you want to specify a particular version of the plugin you can add the version attribute to the gap tag.
 
 ```xml
-<plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.3.9" />
+<plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.4.0">
     <param name="SENDER_ID" value="XXXXXXX" />
-</plugin>
+</param>
 ```
 
-##<a name="plugin_api"></a> Plugin API
-
-#### Whitelist
+### Whitelist
 Add *.devicepush.com domain in the config.xml file:
 ```xml
 <access origin="*.devicepush.com" />
 <allow-navigation href="*.devicepush.com" />
 ```
 
-#### To register a new device
+## <a name="plugin_api"></a>Plugin API
+
+### To register a new device
 When the device is ready, you must call the register function.
 ```js
     var app = {
@@ -92,18 +86,23 @@ When the device is ready, you must call the register function.
                 idUser: 'USER_ID', // Your User ID in Device Push
                 idApplication: 'APPLICATION_ID', // Aplication ID in Device Push
                 position: true // Activate or deactivate gps position record. Default value is false
-                additionalData: {} // Currently in development
+                additionalData: {} // Include additional data of the current user for targeting
             });
         },
         receivedEvent: function(id) {}
     };
 ```
 
-#### To get id or token device
+### To unregister a device
+You must call the unregister function.
+```js
+    devicePush.unregister();
+```
+
+### To get id or token device
 You can get the device id or token of the device.
 ```js
     document.addEventListener("deviceRegistered", successDeviceRegistered, false);
-
     function successDeviceRegistered(evt){
         console.log("Device Id" + evt.devicePushId);
         var id = evt.devicePushId;
@@ -113,11 +112,10 @@ You can get the device id or token of the device.
 ```
 With this ID you can send notification from your server.
 
-#### To manager a notification received
+### To manager a notification received
 You can manage notifications received with the next method
 ```js
     document.addEventListener('notificationReceived', successNotificationReceived, false);
-
     function successNotificationReceived(evt){
         // evt.data.message, 
         // evt.data.title, 
@@ -128,42 +126,52 @@ You can manage notifications received with the next method
     }
 ```
 
+### When you unregister device
+You can unregister device.
+```js
+    document.addEventListener("deviceUnregistered", successDeviceUnregistered, false);
+    function successDeviceUnregistered(){
+        //TODO
+    }
+```
+
 To show a dynamic and floating notification, you have to add the following function into the function successNotificationReceived.
 ```js
     devicePush.showNotification(evt.data.message);
 ```
 
-#### To activate or not gps position record
+### To activate or not gps position record
 You can activate or deactivate gps position record.
 ```js
     devicePush.setPosition(true); //Active gps position record, true o false. Default value is false.
 ```
 
-#### To put additional user data for segmentation
+### To put additional user data for segmentation
 To activate the segmentation of notifications, you will have to send additional user data, such as personal data.
 ```js
-    // Currently in development
     devicePush.putAdditionalData({
-        additionalData: {
-            name: '',
-            surnames: '',
-            age: '',
-            gender: ''
-        } 
+        name: '',
+        surnames: '',
+        age: '',
+        gender: ''
     });
 ```
 
-You can see more information about this at: http://www.devicepush.com/documentation-push-notification/
+### When the additional data is updated
+```js
+    document.addEventListener("additionalDataUpdated", successAdditionalDataUpdated, false);
+    function successAdditionalDataUpdated(){
+        //TODO
+    }
+```
+
+You can see more information about this at: https://www.devicepush.com/es/phonegap-cordova/
 
 Looking at the above message handling code for Android, a few things bear explanation. Your app may receive a notification while it is active (INLINE). If you background the app by hitting the Home button on your device, you may later receive a status bar notification. Selecting that notification from the status will bring your app to the front and allow you to process the notification (BACKGROUND). Finally, should you completely exit the app by hitting the back button from the home page, you may still receive a notification. Touching that notification in the notification tray will relaunch your app and allow you to process the notification (COLDSTART). In this case the **coldstart** flag will be set on the incoming event. You can look at the **foreground** flag on the event to determine whether you are processing a background or an in-line notification. You may choose, for example to play a sound or show a dialog only for inline or coldstart notifications since the user has already been alerted via the status bar.
 
 Since the Android notification data models are much more flexible than that of iOS, there may be additional elements beyond **message**. You can access those elements and any additional ones via the **payload** element. This means that if your data model should change in the future, there will be no need to change and recompile the plugin.
 
-
-##<a name="testing"></a> Testing
-The notification system consists of several interdependent components.
-
-##<a name="license"></a> LICENSE
+## <a name="license"></a>License
 
 	The MIT License
 

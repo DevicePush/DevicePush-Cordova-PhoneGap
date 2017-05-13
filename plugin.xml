@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
         id="com.devicepush.cordova-phonegap"
-        version="0.3.9">
-
+        version="0.4.0">
 	<name>DevicePush</name>
-	
 	<engines>
 		<engine name="cordova" version=">=3.0.0"/>
 	</engines>
-	
 	<asset src="www/devicepush.min.js" target="js/devicepush.min.js"/>
 	<js-module src="www/devicepush.min.js" name="devicePush">
 		<clobbers target="devicePush" />
 	</js-module>
-  
     <dependency id="cordova-plugin-device" />
-    <dependency id="phonegap-plugin-push@1.10.2" />
+    <dependency id="phonegap-plugin-push@v1.10.2" />
     <dependency id="cordova-plugin-geolocation" />
     <dependency id="cordova-plugin-whitelist" />
-  
 </plugin>

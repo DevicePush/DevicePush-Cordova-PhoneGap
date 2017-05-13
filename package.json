@@ -1,5 +1,5 @@
 {
-  "version": "0.3.9",
+  "version": "0.4.0",
   "name": "com.devicepush.cordova-phonegap",
   "cordova_name": "DevicePush",
   "platforms": [],
@@ -9,7 +9,7 @@
       "version": ">=3.0.0"
     }
   ],
-  "description": "This plugin is for use with Cordova, and allows your application to receive push notifications on Android and iOS devices.",
+  "description": "This plugin is for use with Cordova and PhoneGap, and allows your application to receive push notifications on Android and iOS devices.",
   "main": "www/devicepush.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,12 +19,14 @@
     "url": "https://github.com/DevicePush/DevicePush-Cordova-PhoneGap.git"
   },
   "keywords": [
-    "phonegap",
-    "cordova",
+    "PhoneGap",
+    "Cordova",
     "push",
     "notification",
     "iOS",
-    "Android"
+    "Android",
+    "APN",
+    "FCM"
   ],
   "author": "Device Push",
   "license": "Apache",
