@@ -56,7 +56,7 @@ The plugin can be installed via PhoneGap Build:
 If you want to specify a particular version of the plugin you can add the version attribute to the gap tag.
 
 ```xml
-<plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.4.3">
+<plugin name="com.devicepush.cordova-phonegap" source="npm" version="0.4.4">
     <param name="SENDER_ID" value="XXXXXXX" />
 </param>
 ```
@@ -120,7 +120,8 @@ You can manage notifications received with the next method
         // evt.data.message, 
         // evt.data.title, 
         // evt.data.count, 
-        // evt.data.sound, 
+        // evt.data.sound,
+        // evt.data.image, 
         // evt.data.additionalData
         console.log(evt.data.message) // data is your text sent
     }
@@ -131,6 +132,15 @@ You can unregister device.
 ```js
     document.addEventListener("deviceUnregistered", successDeviceUnregistered, false);
     function successDeviceUnregistered(){
+        //TODO
+    }
+```
+
+### When happen any error
+The event error will trigger when an internal error occurs and the cache is aborted.
+```js
+    document.addEventListener("deviceError", successDeviceError, false);
+    function successDeviceError(){
         //TODO
     }
 ```
